@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:robohash/src/models/robot_model.dart';
-import '../widgets/rb_gridview_widget.dart';
+import 'package:robohash/src/widgets/rb_search_bar.dart';
+import '../models/robot_model.dart';
+import '../widgets/rb_gridview.dart';
 
 class RBHomeComponents extends StatelessWidget {
   final List<RobotModel>?  rbModel;
