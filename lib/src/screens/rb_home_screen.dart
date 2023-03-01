@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:robohash/src/components/rb_home_components.dart';
 import '../bloc/rb_cubit/rb_cubit.dart';
 import '../bloc/rb_cubit/rb_state.dart';
 
@@ -43,9 +44,7 @@ class _RBHomeScreenState extends State<RBHomeScreen> {
             );
           }
           if (state is RBStateSuccess) {
-            return Container(
-              child: Text(state.rbModel[0].name ?? ""),
-            );
+            return RBHomeComponents(rbModel: state.rbModel);
           }
           return Container();
         },
