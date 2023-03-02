@@ -1,36 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:robohash/src/widgets/rb_display_grid_view.dart';
 import '../constants/host_constants.dart';
 import '../models/robot_model.dart';
 import 'rb_grid_view_item.dart';
+import 'rb_search_bar.dart';
 
-class RBGridViewWidget extends StatelessWidget {
+class RBGridViewWidget extends StatefulWidget {
   final List<RobotModel>?  rbModel;
-  const RBGridViewWidget({super.key, this.rbModel});
+  String searchTxt = "";
+  final List<RobotModel> filterRBModel = [];
+  RBGridViewWidget({Key? key, this.rbModel}) : super(key: key) ;
 
+  @override
+  State<RBGridViewWidget> createState() => _RBGridViewWidgetState();
+}
+
+class _RBGridViewWidgetState extends State<RBGridViewWidget> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    return GridView.builder(
-      padding: const EdgeInsets.all(16),
-      physics: const BouncingScrollPhysics(),
-      itemCount: rbModel?.length ?? 0,
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: (width * .13) / (height * .1),
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        return GridViewItem(
-          name: rbModel![index].name,
-          email: rbModel![index].email,
-          image: '$imgPathConst${rbModel![index].id}$imgUrlSize',
-          itemHeight: height * .1,
-          itemWidth: width * .3,
-        );
-      },
-     );
+    return Column(
+      children: [
+        SizedBox(
+          height: 80,
+          child: RBSearchBar(
+            hintText: 'Search Robotos...',
+            onChanged: (searchRobotos) {
+              setState(() {
+                widget.searchTxt = searchRobotos;
+                _searchRobotos(searchRobotos);
+              });
+            },
+          ),
+        ),
+        Expanded(child: RBDisplayGridView(rbModel: widget.rbModel, searchTxt: widget.searchTxt, filterRBModel: widget.filterRBModel)),
+      ],
+    );
+  }
+
+  void _searchRobotos(String searchRobots) async {
+    widget.filterRBModel.clear();
+    for (final item in widget.rbModel!) {
+      if (item.name!.toLowerCase().startsWith(searchRobots.toLowerCase())) {
+          widget.filterRBModel.add(item);
+      }
+    }
   }
 }
