@@ -11,5 +11,8 @@ I have shown you what it takes to architect a Flutter app from the ground up.
 
  * Implemented the API of Json Placeholder
  * Separating UI and business logic
+ * Implemented Statemanagement cubit in application
+ * Implemented search in the applciation
+ * written test cases for api
 
 # robohash

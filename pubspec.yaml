@@ -45,6 +45,7 @@ dependencies:
   freezed: ^2.0.4
   connectivity: ^3.0.6
   cached_network_image: ^3.2.0
+  nock: ^1.2.1
 
 dev_dependencies:
   flutter_test:

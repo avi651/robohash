@@ -35,7 +35,7 @@ class GridViewItem extends StatelessWidget {
                 top: 0.0,
                 right: 10.0,
                 child: Icon(Icons.favorite,
-                    size: 30.0, color: isFav == true ? Colors.red : Colors.green), //Icon
+                    size: 30.0, color: isFav == true ? Colors.red : Colors.grey), //Icon
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
