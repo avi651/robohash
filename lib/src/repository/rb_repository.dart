@@ -14,7 +14,8 @@ class RBRepository {
 
   Future<List<RobotModel>>? fetchRobotData() async {
     try {
-      final List<RobotModel>? robotModel = await rbApiServices!.getRBApiServices();
+      final List<RobotModel>? robotModel =
+          await rbApiServices!.getRBApiServices();
       if (kDebugMode) {
         log('RobotServices: ${robotModel}');
       }

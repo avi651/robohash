@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:robohash/src/widgets/rb_display_grid_view.dart';
-import '../constants/host_constants.dart';
 import '../models/robot_model.dart';
-import 'rb_grid_view_item.dart';
 import 'rb_search_bar.dart';
 
 class RBGridViewWidget extends StatefulWidget {
-  final List<RobotModel>?  rbModel;
+  final List<RobotModel>? rbModel;
   String searchTxt = "";
   final List<RobotModel> filterRBModel = [];
-  RBGridViewWidget({Key? key, this.rbModel}) : super(key: key) ;
+  RBGridViewWidget({Key? key, this.rbModel}) : super(key: key);
 
   @override
   State<RBGridViewWidget> createState() => _RBGridViewWidgetState();
@@ -18,8 +16,6 @@ class RBGridViewWidget extends StatefulWidget {
 class _RBGridViewWidgetState extends State<RBGridViewWidget> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         SizedBox(
@@ -34,7 +30,13 @@ class _RBGridViewWidgetState extends State<RBGridViewWidget> {
             },
           ),
         ),
-        Expanded(child: RBDisplayGridView(rbModel: widget.rbModel, searchTxt: widget.searchTxt, filterRBModel: widget.filterRBModel)),
+        Expanded(
+          child: RBDisplayGridView(
+            rbModel: widget.rbModel,
+            searchTxt: widget.searchTxt,
+            filterRBModel: widget.filterRBModel,
+          ),
+        ),
       ],
     );
   }
@@ -43,7 +45,7 @@ class _RBGridViewWidgetState extends State<RBGridViewWidget> {
     widget.filterRBModel.clear();
     for (final item in widget.rbModel!) {
       if (item.name!.toLowerCase().startsWith(searchRobots.toLowerCase())) {
-          widget.filterRBModel.add(item);
+        widget.filterRBModel.add(item);
       }
     }
   }

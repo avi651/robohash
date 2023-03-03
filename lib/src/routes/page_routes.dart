@@ -8,7 +8,7 @@ Route<String> createRoute(Widget widget) {
       const end = Offset.zero;
       var curve = Curves.bounceInOut;
       final tween =
-      Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
       return SlideTransition(
         position: animation.drive(tween),
         child: child,

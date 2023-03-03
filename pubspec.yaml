@@ -45,7 +45,6 @@ dependencies:
   freezed: ^2.0.4
   connectivity: ^3.0.6
   cached_network_image: ^3.2.0
-  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:

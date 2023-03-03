@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
-
 import '../constants/host_constants.dart';
 import '../models/robot_model.dart';
 import 'rb_grid_view_item.dart';
 
-class RBDisplayGridView extends StatelessWidget {
-  final List<RobotModel>?  rbModel;
+class RBDisplayGridView extends StatefulWidget {
+  final List<RobotModel>? rbModel;
   String searchTxt = "";
   final List<RobotModel>? filterRBModel;
-  RBDisplayGridView({super.key, required this.rbModel, required this.searchTxt, required this.filterRBModel});
+  RBDisplayGridView({
+    super.key,
+    required this.rbModel,
+    required this.searchTxt,
+    required this.filterRBModel,
+  });
 
+  @override
+  State<RBDisplayGridView> createState() => _RBDisplayGridViewState();
+}
+
+class _RBDisplayGridViewState extends State<RBDisplayGridView> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    return  GridView.builder(
+    return GridView.builder(
       padding: const EdgeInsets.all(16),
       physics: const BouncingScrollPhysics(),
-      itemCount: searchTxt.isEmpty ? rbModel?.length ?? 0 : filterRBModel?.length ?? 0,
+      itemCount: widget.searchTxt.isEmpty
+          ? widget.rbModel?.length ?? 0
+          : widget.filterRBModel?.length ?? 0,
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -26,12 +37,37 @@ class RBDisplayGridView extends StatelessWidget {
         childAspectRatio: (width * .13) / (height * .1),
       ),
       itemBuilder: (BuildContext context, int index) {
-        return GridViewItem(
-          name: searchTxt.isEmpty ? rbModel![index].name : filterRBModel![index].name,
-          email: searchTxt.isEmpty ? rbModel![index].email : filterRBModel![index].email,
-          image: '$imgPathConst${searchTxt.isEmpty ? rbModel![index].id : filterRBModel![index].email}$imgUrlSize',
-          itemHeight: height * .1,
-          itemWidth: width * .3,
+        return InkWell(
+          onTap: () {
+            setState(() {
+              if (widget.searchTxt.isEmpty
+                  ? widget.rbModel![index].isFav == false
+                  : widget.filterRBModel![index].isFav == false) {
+                widget.searchTxt.isEmpty
+                    ? widget.rbModel![index].isFav = true
+                    : widget.filterRBModel![index].isFav = true;
+              } else {
+                widget.searchTxt.isEmpty
+                    ? widget.rbModel![index].isFav = false
+                    : widget.filterRBModel![index].isFav = false;
+              }
+            });
+          },
+          child: GridViewItem(
+            name: widget.searchTxt.isEmpty
+                ? widget.rbModel![index].name
+                : widget.filterRBModel![index].name,
+            email: widget.searchTxt.isEmpty
+                ? widget.rbModel![index].email
+                : widget.filterRBModel![index].email,
+            image:
+                '$imgPathConst${widget.searchTxt.isEmpty ? widget.rbModel![index].id : widget.filterRBModel![index].email}$imgUrlSize',
+            itemHeight: height * .1,
+            itemWidth: width * .3,
+            isFav: widget.searchTxt.isEmpty
+                ? widget.rbModel![index].isFav
+                : widget.filterRBModel![index].isFav,
+          ),
         );
       },
     );

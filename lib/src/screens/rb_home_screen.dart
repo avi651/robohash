@@ -15,7 +15,6 @@ class RBHomeScreen extends StatefulWidget {
 }
 
 class _RBHomeScreenState extends State<RBHomeScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -24,14 +23,11 @@ class _RBHomeScreenState extends State<RBHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController editingController = TextEditingController();
     return Scaffold(
-      appBar: const RBAppBar(
-          title: 'ROBOFRIENDS'
-      ),
+      appBar: const RBAppBar(title: 'ROBOFRIENDS'),
       body: BlocBuilder<RBCubit, RBState>(
         builder: (context, state) {
-          if(state is RBStateInitial) {
+          if (state is RBStateInitial) {
             return const Center(
               child: CupertinoActivityIndicator(),
             );

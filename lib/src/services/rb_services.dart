@@ -1,6 +1,5 @@
 import '../constants/host_constants.dart';
 import '../exceptions/data_exceptions.dart';
-import '../exceptions/http_error_handler.dart';
 import '../models/robot_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

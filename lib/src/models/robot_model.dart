@@ -7,18 +7,32 @@ class RobotModel {
   String? phone;
   String? website;
   Company? company;
+  bool? isFav;
 
-  RobotModel({this.id, this.name, this.username, this.email, this.address, this.phone, this.website, this.company});
+  RobotModel({
+    this.id,
+    this.name,
+    this.username,
+    this.email,
+    this.address,
+    this.phone,
+    this.website,
+    this.company,
+    this.isFav,
+  });
 
   RobotModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     username = json['username'];
     email = json['email'];
-    address = json['address'] != null ? Address?.fromJson(json['address']) : null;
+    address =
+        json['address'] != null ? Address?.fromJson(json['address']) : null;
     phone = json['phone'];
     website = json['website'];
-    company = json['company'] != null ? Company?.fromJson(json['company']) : null;
+    company =
+        json['company'] != null ? Company?.fromJson(json['company']) : null;
+    isFav = json['isFav'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -30,6 +44,7 @@ class RobotModel {
     data['address'] = address!.toJson();
     data['phone'] = phone;
     data['website'] = website;
+    data['isFav'] = isFav;
     data['company'] = company!.toJson();
     return data;
   }
