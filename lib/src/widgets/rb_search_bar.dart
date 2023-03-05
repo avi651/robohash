@@ -32,30 +32,3 @@ class _RBSearchBarState extends State<RBSearchBar> {
     );
   }
 }
-
-/*class RBSearchBar extends StatelessWidget {
-  void Function(String)? onTextChange;
-  RBSearchBar({super.key, this.onTextChange});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-          onChanged: onTextChange,
-          decoration: InputDecoration(
-              fillColor: Colors.black.withOpacity(0.1),
-              filled: true,
-              prefixIcon: const Icon(Icons.search),
-              hintText: 'Search Robots ...',
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none
-              ),
-              contentPadding: EdgeInsets.zero
-          )
-      ),
-    );
-  }
-}*/
